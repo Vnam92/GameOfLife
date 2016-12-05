@@ -5,3 +5,9 @@
    display: block;
    margin: auto;
 }
+
+#elev{
+	display: block;
+	position: relative;
+	margin: auto;
+}
