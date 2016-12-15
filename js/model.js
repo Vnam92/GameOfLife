@@ -1,4 +1,5 @@
 //model
+
 window.requestAnimationFrame = window.requestAnimationFrame ||
                                window.webkitRequestAnimationFrame ||
                                window.mozRequestAnimationFrame ||
@@ -65,13 +66,13 @@ var Cell = function(x, y, grid){
 
    that.getNeighbors = function(){
       return [that.grid.getCell(x-1, y-1), 
-                   that.grid.getCell(x-1, y), 
-                   that.grid.getCell(x-1, y+1), 
-                   that.grid.getCell(x, y-1), 
-                   that.grid.getCell(x, y+1), 
-                   that.grid.getCell(x+1, y-1), 
-                   that.grid.getCell(x+1, y), 
-                   that.grid.getCell(x+1, y+1)];
+              that.grid.getCell(x-1, y), 
+              that.grid.getCell(x-1, y+1), 
+              that.grid.getCell(x, y-1), 
+              that.grid.getCell(x, y+1), 
+              that.grid.getCell(x+1, y-1), 
+              that.grid.getCell(x+1, y), 
+              that.grid.getCell(x+1, y+1)];
    }
 
    that.willDie = function(){

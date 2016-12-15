@@ -1,4 +1,5 @@
 //view
+
 var Grid = function(x, y, rows, columns, width, height){
    var that = this;
    that.x = x;
@@ -58,6 +59,7 @@ var Grid = function(x, y, rows, columns, width, height){
 
       that.currentTime = 0;
    }
+   
 
    that.draw = function(ctx, delta){
       ctx.save();
