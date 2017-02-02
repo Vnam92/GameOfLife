@@ -1,19 +1,32 @@
 //controller
 
-var game = new Game("game");
-var grid = new Grid(0, 0, Math.floor(600/20), Math.floor(800/20), 30, 30);
+var Controller = function (view, model) {
+    var _view = view;
+    var _model = model;
 
-game.canvas.addEventListener('click', function(evt){
-   var gridx = Math.floor(evt.offsetX / grid.width);
-   var gridy = Math.floor(evt.offsetY / grid.height);
-   grid.getCell(gridx, gridy).isAlive = true;
-});
+    // event binding
+    _model.canvas.addEventListener('click', function (event) {
+        var gridx = Math.floor(event.offsetX / _view.width);
+        var gridy = Math.floor(event.offsetY / _view.height);
+        _view.getCell(gridx, gridy).isAlive = true;
+    });
 
-// window.addEventListener('keydown', function(){
-//    grid.simulationOn = !grid.simulationOn;
-// });
-elem.addEventListener('click', function(){
-   grid.simulationOn = !grid.simulationOn;
-});
-game.actors.push(grid);
-game.start();
+    elem.addEventListener('click', function () {
+        _view.simulationOn = !_view.simulationOn;
+    });
+
+};
+
+//main
+(function () {
+    var init = {
+        main: function () {
+            var model = new Model("game");
+            var view = new View(0, 0, Math.floor(600 / 20), Math.floor(800 / 20), 30, 30);
+            var controller = Controller(view, model);
+            model.actors.push(view);
+            model.start();
+        }
+    };
+    init.main();
+}());

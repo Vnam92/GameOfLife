@@ -39,7 +39,7 @@ describe("The view", function(){
    var grid;
 
    beforeEach(function(){
-      grid = new Grid();
+      grid = new View();
    });
 
    it("is defined", function(){

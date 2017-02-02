@@ -1,13 +1,11 @@
-
-#game {
-   width: 800px;
-   height: 600px;
-   display: block;
-   margin: auto;
+.game {
+	width: 800px;
+	height: 600px;
+	display: block;
+	margin: auto;
 }
-
-#elev{
+.elem{
 	display: block;
 	position: relative;
-	margin: auto;
+	float: left;
 }
