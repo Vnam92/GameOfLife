@@ -1,0 +1,11 @@
+{
+  "name": "gameoflife",
+  "version": "1.0.0",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1"
+  }
+}

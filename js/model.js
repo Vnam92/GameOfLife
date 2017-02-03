@@ -1,4 +1,5 @@
 //model
+'use strict';
 
 var Model = function (canvasId) {
     var that = this;

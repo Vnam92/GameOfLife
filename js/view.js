@@ -1,4 +1,5 @@
 //view
+'use strict';
 
 var View = function (x, y, rows, columns, width, height) {
     var that = this;

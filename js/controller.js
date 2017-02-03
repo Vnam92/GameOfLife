@@ -1,4 +1,5 @@
 //controller
+'use strict';
 
 var Controller = function (view, model) {
     var _view = view;
