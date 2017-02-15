@@ -80,19 +80,19 @@ exports.default = Controller;
 //controller
 
 function Controller(view, model) {
+
     model.actors.push(view);
     model.start();
 
     model.canvas.addEventListener('click', function (event) {
         var gridx = Math.floor(event.offsetX / view.width);
         var gridy = Math.floor(event.offsetY / view.height);
-        view.getCell(gridx, gridy).isAlive = true;
+        view.viewLiveCell(gridx, gridy);
     });
 
     elem.addEventListener('click', function () {
-        view.simulationOn = !view.simulationOn;
+        view.startSimulation();
     });
-    return this;
 };
 
 /***/ }),
@@ -109,6 +109,7 @@ exports.default = Model;
 //model
 
 function Model(canvasId) {
+
     var that = this;
     var canvas = document.getElementById(canvasId);
     var ctx = canvas.getContext('2d');
@@ -176,6 +177,7 @@ var _cell2 = _interopRequireDefault(_cell);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function View(x, y, rows, columns, width, height) {
+
     var that = this;
     that.x = x;
     that.y = y;
@@ -273,6 +275,14 @@ function View(x, y, rows, columns, width, height) {
         ctx.restore();
     };
 
+    that.viewLiveCell = function (gridx, gridy) {
+        return that.getCell(gridx, gridy).isAlive = true;
+    };
+
+    that.startSimulation = function () {
+        return that.simulationOn = !that.simulationOn;
+    };
+
     initialize();
     return that;
 } //view
@@ -292,6 +302,7 @@ exports.default = Cell;
 //cell
 
 function Cell(x, y, grid) {
+
     var that = this;
     that.x = x;
     that.y = y;
