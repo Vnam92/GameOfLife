@@ -1,33 +1,38 @@
 'use strict';
+const path = require('path');
 
 module.exports = {
     context: __dirname + "/js",
     entry: {
-        controller: "./controller",
-        model: "./model",
-        view: "./view"
+        controller: "./app",
+        //model: "./model",
+        // view: "./view"
     },
     output: {
-        path: __dirname + "/dist",
-        filename: "[name].js"
+        path: __dirname + "/public",
+        publicPath: '/',
+        filename: "bundle.js"
+        // library: "[name]"
     },
-
     watch: true,
     watchOptions: {
-        aggregateTimeout: 100
+        aggregateTimeout: 150
     },
-    devtool: "source-map",
-
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel?optional[]=runtime'
+                exclude: /node_modules/,
+                loader: "babel-loader"
             },
             {
                 test: /\.css$/,
-                loader: 'style.css'
+                loader: 'style!css'
             },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            }
         ]
     }
 
