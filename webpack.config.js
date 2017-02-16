@@ -4,15 +4,13 @@ const path = require('path');
 module.exports = {
     context: __dirname + "/js",
     entry: {
-        controller: "./app",
-        //model: "./model",
-        // view: "./view"
+        app: "./app",
     },
     output: {
         path: __dirname + "/public",
         publicPath: '/',
         filename: "bundle.js"
-        // library: "[name]"
+
     },
     watch: true,
     watchOptions: {

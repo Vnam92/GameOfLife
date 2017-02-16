@@ -1,5 +1,4 @@
 //cell
-
 export default function Cell(x, y, grid) {
 
     var that = this;
@@ -17,7 +16,7 @@ export default function Cell(x, y, grid) {
             that.grid.getCell(x + 1, y - 1),
             that.grid.getCell(x + 1, y),
             that.grid.getCell(x + 1, y + 1)];
-    }
+    };
 
     that.willDie = function () {
         var livingNeighbors = that.getNeighbors().filter(function (c) {
@@ -33,7 +32,7 @@ export default function Cell(x, y, grid) {
         }
 
         return false;
-    }
+    };
 
     that.willBeBorn = function () {
         var livingNeighbors = that.getNeighbors().filter(function (c) {
@@ -44,7 +43,7 @@ export default function Cell(x, y, grid) {
             return true;
         }
         return false;
-    }
+    };
 
     return that;
 };

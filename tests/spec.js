@@ -65,12 +65,6 @@ describe("The view", function(){
       expect(grid.draw).toHaveBeenCalled();
    });
 
-   it("method draw is called", function(){
-      spyOn(grid, 'draw');
-      grid.draw(1,2);
-      expect(grid.draw).toHaveBeenCalled();
-   });   
-
    it("method getCell is called", function(){
       spyOn(grid, 'getCell');
       grid.getCell(1,2);

@@ -78,21 +78,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Controller;
 //controller
-
 function Controller(view, model) {
 
-    model.actors.push(view);
-    model.start();
-
-    model.canvas.addEventListener('click', function (event) {
-        var gridx = Math.floor(event.offsetX / view.width);
-        var gridy = Math.floor(event.offsetY / view.height);
-        view.viewLiveCell(gridx, gridy);
+    view.canvas.addEventListener('click', function (event) {
+        var gridx = Math.floor(event.offsetX / model.width);
+        var gridy = Math.floor(event.offsetY / model.height);
+        model.viewLiveCell(gridx, gridy);
     });
 
     elem.addEventListener('click', function () {
-        view.startSimulation();
+        model.startSimulation();
     });
+
+    view.actors.push(model);
+    view.start();
+    return this;
 };
 
 /***/ }),
@@ -106,69 +106,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = Model;
-//model
-
-function Model(canvasId) {
-
-    var that = this;
-    var canvas = document.getElementById(canvasId);
-    var ctx = canvas.getContext('2d');
-    that.canvas = canvas;
-    that.background = 'black';
-    that.running = false;
-    that.isDebug = true;
-    that.actors = [];
-
-    that.clear = function () {
-        ctx.fillStyle = that.background;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    };
-
-    that.update = function (delta) {
-        that.actors.forEach(function (a) {
-            a.update(that, delta);
-        });
-    };
-
-    that.draw = function (delta) {
-        that.actors.forEach(function (a) {
-            a.draw(ctx, delta);
-        });
-    };
-
-    that.start = function () {
-        that.running = true;
-
-        var lastTime = Date.now();
-
-        (function mainloop() {
-            if (!that.running) return;
-            window.requestAnimationFrame(mainloop);
-            // current time in millisec
-            var current = Date.now();
-            // time elapsed in milliseconds since the last frame
-            var elapsed = current - lastTime;
-            // update draw
-            that.clear();
-            that.update(elapsed);
-            that.draw(elapsed);
-            lastTime = current;
-        })();
-    };
-    return that;
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = View;
 
 var _cell = __webpack_require__(3);
 
@@ -176,7 +113,7 @@ var _cell2 = _interopRequireDefault(_cell);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function View(x, y, rows, columns, width, height) {
+function Model(x, y, rows, columns, width, height) {
 
     var that = this;
     that.x = x;
@@ -240,7 +177,7 @@ function View(x, y, rows, columns, width, height) {
         ctx.save();
         ctx.translate(x, y);
 
-        // Рисование формы игр. окна
+        // отрисовка формы игрового окна
         ctx.fillStyle = that.background;
         ctx.fillRect(0, 0, columns * width, rows * height);
         ctx.fillStyle = that.foreground;
@@ -264,7 +201,7 @@ function View(x, y, rows, columns, width, height) {
             currY += height;
         }
 
-        // Рисование ячеек
+        // отрисовка ячеек
         ctx.fillStyle = that.cellColor;
         var livingCells = that.cells.filter(function (c) {
             return c.isAlive;
@@ -285,8 +222,67 @@ function View(x, y, rows, columns, width, height) {
 
     initialize();
     return that;
-} //view
+} //model
 ;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = View;
+//view
+function View(canvasId) {
+
+    var that = this;
+    var canvas = document.getElementById(canvasId);
+    var ctx = canvas.getContext('2d');
+    that.canvas = canvas;
+    that.background = 'black';
+    that.running = false;
+    that.isDebug = true;
+    that.actors = [];
+
+    that.clear = function () {
+        ctx.fillStyle = that.background;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    };
+
+    that.update = function (delta) {
+        that.actors.forEach(function (a) {
+            a.update(that, delta);
+        });
+    };
+
+    that.draw = function (delta) {
+        that.actors.forEach(function (a) {
+            a.draw(ctx, delta);
+        });
+    };
+
+    that.start = function () {
+        that.running = true;
+
+        var lastTime = Date.now();
+
+        (function mainloop() {
+            if (!that.running) return;
+            window.requestAnimationFrame(mainloop);
+            var current = Date.now();
+            var elapsed = current - lastTime;
+            that.clear();
+            that.update(elapsed);
+            that.draw(elapsed);
+            lastTime = current;
+        })();
+    };
+    return that;
+};
 
 /***/ }),
 /* 3 */
@@ -300,7 +296,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = Cell;
 //cell
-
 function Cell(x, y, grid) {
 
     var that = this;
@@ -350,13 +345,13 @@ function Cell(x, y, grid) {
 "use strict";
 
 
-var _model = __webpack_require__(1);
-
-var _model2 = _interopRequireDefault(_model);
-
 var _view = __webpack_require__(2);
 
 var _view2 = _interopRequireDefault(_view);
+
+var _model = __webpack_require__(1);
+
+var _model2 = _interopRequireDefault(_model);
 
 var _controller = __webpack_require__(0);
 
@@ -364,9 +359,9 @@ var _controller2 = _interopRequireDefault(_controller);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var view = new _view2.default(0, 0, Math.floor(600 / 20), Math.floor(800 / 20), 30, 30); //entry
+var view = new _view2.default("game"); //entry
 
-var model = new _model2.default("game");
+var model = new _model2.default(0, 0, Math.floor(600 / 20), Math.floor(540 / 20), 30, 30);
 (0, _controller2.default)(view, model);
 
 /***/ })
