@@ -2,14 +2,14 @@ import Model from '../js/model.js';
 import View from '../js/view.js';
 import Cell from '../js/cell.js';
 
-describe("A Cell ", () =>{
+describe("A Cell ", () => {
     let cell;
-    beforeEach(() =>{
+    beforeEach(() => {
         cell = new Cell();
-        cell.neighbors = [new Cell(), new Cell(), new Cell(), new Cell(),new Cell(), new Cell(), new Cell(), new Cell()];
+        cell.neighbors = [new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell(), new Cell()];
     });
 
-    it("is defined", () =>{
+    it("is defined", () => {
         expect(Cell).toBeDefined();
     });
 
@@ -17,6 +17,7 @@ describe("A Cell ", () =>{
         let neighbors = cell.getNeighbors;
         expect(neighbors).toBeDefined();
         expect(neighbors).toBeTruthy();
+
     });
 
     it("is dead by default", () => {
@@ -25,19 +26,37 @@ describe("A Cell ", () =>{
     });
 
     it("will die if it has fewer than 2 live neighbors", () => {
-        expect(cell.willDie).toBeDefined();
+        cell.neighbors[0].isAlive = true;
+        spyOn(cell, 'willDie');
+        cell.willDie();
+        expect(cell.willDie).toHaveBeenCalled();
+
     });
 
-    it("will be born if it has exactly 3 neighbors", () =>{
-        expect(cell.willBeBorn).toBeDefined();
+    it("will be born if it has exactly 3 neighbors", () => {
+        cell.neighbors[0].isAlive = true;
+        cell.neighbors[1].isAlive = true;
+        spyOn(cell, 'willBeBorn');
+        cell.willBeBorn();
+        expect(cell.willBeBorn).toHaveBeenCalled();
+    });
+
+    it("should die if it has more than 3 live neighbors", () => {
+        cell.neighbors[0].isAlive = true;
+        cell.neighbors[1].isAlive = true;
+        cell.neighbors[2].isAlive = true;
+        cell.neighbors[3].isAlive = true;
+        spyOn(cell, 'willDie');
+        cell.willDie();
+        expect(cell.willDie).toHaveBeenCalled();
     });
 
 });
 
-describe("A Model", () =>{
+describe("A Model", () => {
     let model;
 
-    beforeEach(function(){
+    beforeEach(function () {
         model = new Model(0, 0, 30, 30, 30, 30);
     });
 
@@ -54,46 +73,22 @@ describe("A Model", () =>{
 
     it("method update is called", () => {
         spyOn(model, 'update');
-        model.update(1,2);
+        model.update(1, 2);
         expect(model.update).toHaveBeenCalled();
     });
 
     it("method draw is called", () => {
         spyOn(model, 'draw');
-        model.draw(1,2);
+        model.draw(1, 2);
         expect(model.draw).toHaveBeenCalled();
     });
 
     it("method getCell is called", () => {
         spyOn(model, 'getCell');
-        model.getCell(1,2);
+        model.getCell(1, 2);
         expect(model.getCell).toHaveBeenCalled();
     });
 
 });
 
-// describe("A view", () =>{
-//
-//     beforeEach(function(){
-//
-//         let canvas = document.createElement('canvas'),
-//         context = canvas.getContext('2d');
-//
-//         this.currentTest.canvas = canvas;
-//         this.currentTest.context = context;
-//         let view = new View(canvas);
-//     });
-//
-//     it("is defined", () => {
-//         expect(view.canvas).toBeDefined();
-//         expect(view.background).toBeDefined();
-//         expect(view.simulationOn).not.toBeTruthy();
-//         expect(view.running).toBeDefined();
-//         expect(view.isDebug).toBeDefined();
-//         expect(view.actors).toBeDefined();
-//         expect(view.getCell).toBeDefined();
-//         expect(view.update).toBeDefined();
-//     });
-//
-// });
 
