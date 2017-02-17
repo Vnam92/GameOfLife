@@ -1,4 +1,4 @@
-#Comway's "Game Of Life" 
+#Conway's "Game Of Life" 
 Example MVC project with unit-tests.
 ##Build project
 `npm build` for development purposes. Serves a webpack app.
