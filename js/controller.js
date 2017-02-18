@@ -7,6 +7,7 @@ export default function Controller(view, model) {
         model.viewLiveCell(gridx, gridy);
     });
 
+<<<<<<< HEAD
     start_btn.addEventListener('click', function () {
         model.startSimulation();
     });
@@ -24,5 +25,13 @@ export default function Controller(view, model) {
     view.actors.push(model);
     view.start();
 
+=======
+    elem.addEventListener('click', function () {
+        model.startSimulation();
+    });
+
+    view.actors.push(model);
+    view.start();
+>>>>>>> origin/master
     return this;
 };

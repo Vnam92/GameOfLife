@@ -105,11 +105,15 @@ export default function Model(x, y, rows, columns, width, height) {
     };
 
     that.startSimulation = function () {
+<<<<<<< HEAD
         return that.simulationOn = true;
     };
 
     that.stopSimulation = function () {
         return that.simulationOn = false;
+=======
+        return that.simulationOn = !that.simulationOn;
+>>>>>>> origin/master
     };
 
     initialize();

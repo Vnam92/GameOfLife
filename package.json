@@ -10,7 +10,11 @@
     "start": "static &",
     "test": "karma start"
   },
+<<<<<<< HEAD
   "bugs": {
+=======
+  "issues": {
+>>>>>>> origin/master
     "url": "https://github.com/Vnam92/GameOfLife/issues"
   },
   "repository": {
