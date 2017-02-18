@@ -1,0 +1,43 @@
+{
+  "name": "GameOfLife",
+  "version": "1.0.5",
+  "description": "Test project",
+  "author": "Vladimir Nam <vnam92@gmail.com>",
+  "license": "ISC",
+  "main": "./js/app.js",
+  "scripts": {
+    "build": "webpack-dev-server",
+    "start": "static &",
+    "test": "karma start"
+  },
+  "bugs": {
+    "url": "https://github.com/Vnam92/GameOfLife/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vnam92/GameOfLife.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-es2015": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "jasmine": "^2.5.3",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.4.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.2",
+    "mocha": "^3.2.0",
+    "webpack": "^2.2.1"
+  },
+  "dependencies": {
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1",
+    "karma-chrome-launcher": "latest"
+  }
+}

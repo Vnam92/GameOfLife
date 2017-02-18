@@ -1,0 +1,20 @@
+body {
+	background-color: peachpuff;
+	text-align: center;
+}
+label{
+	margin-left: 5px;
+}
+.game {
+	display: block;
+	margin: auto;
+}
+.buttons-container {
+	width: 100%;
+}
+.buttons-container > input {
+	margin-top: 20px;
+	margin-left: 5px;
+}
+
+
