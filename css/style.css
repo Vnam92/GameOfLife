@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
 	background-color: peachpuff;
 	text-align: center;
@@ -19,16 +18,3 @@ label{
 }
 
 
-=======
-.game {
-	width: 800px;
-	height: 600px;
-	display: block;
-	margin: auto;
-}
-.elem{
-	display: block;
-	position: relative;
-	float: left;
-}
->>>>>>> origin/master

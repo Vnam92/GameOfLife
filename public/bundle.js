@@ -86,7 +86,6 @@ function Controller(view, model) {
         model.viewLiveCell(gridx, gridy);
     });
 
-<<<<<<< HEAD
     start_btn.addEventListener('click', function () {
         model.startSimulation();
     });
@@ -104,14 +103,6 @@ function Controller(view, model) {
     view.actors.push(model);
     view.start();
 
-=======
-    elem.addEventListener('click', function () {
-        model.startSimulation();
-    });
-
-    view.actors.push(model);
-    view.start();
->>>>>>> origin/master
     return this;
 };
 
@@ -237,15 +228,11 @@ function Model(x, y, rows, columns, width, height) {
     };
 
     that.startSimulation = function () {
-<<<<<<< HEAD
         return that.simulationOn = true;
     };
 
     that.stopSimulation = function () {
         return that.simulationOn = false;
-=======
-        return that.simulationOn = !that.simulationOn;
->>>>>>> origin/master
     };
 
     initialize();
@@ -309,7 +296,6 @@ function View(canvasId) {
             lastTime = current;
         })();
     };
-<<<<<<< HEAD
 
     that.setHeight = function () {
         return canvas.height = document.getElementById("number_btn_height").value;
@@ -319,8 +305,6 @@ function View(canvasId) {
         return canvas.width = document.getElementById("number_btn_width").value;
     };
 
-=======
->>>>>>> origin/master
     return that;
 };
 
@@ -401,11 +385,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var view = new _view2.default("game"); //entry
 
-<<<<<<< HEAD
 var model = new _model2.default(0, 0, Math.floor(1366 / 20), Math.floor(1024 / 20), 30, 30);
-=======
-var model = new _model2.default(0, 0, Math.floor(600 / 20), Math.floor(540 / 20), 30, 30);
->>>>>>> origin/master
 (0, _controller2.default)(view, model);
 
 /***/ })

@@ -43,7 +43,6 @@ export default function View(canvasId) {
             lastTime = current;
         })();
     };
-<<<<<<< HEAD
 
     that.setHeight = function () {
         return canvas.height = document.getElementById("number_btn_height").value;
@@ -53,8 +52,6 @@ export default function View(canvasId) {
         return canvas.width = document.getElementById("number_btn_width").value;
     };
 
-=======
->>>>>>> origin/master
     return that;
 };
 
