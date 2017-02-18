@@ -11,3 +11,4 @@ Example MVC project with unit-tests.
 + Webpack 2.x
 + Jasmine 2.5.x
 + Karma 1.4.x
++ Mocha 3.2.x
