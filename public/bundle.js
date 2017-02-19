@@ -79,29 +79,31 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = Controller;
 //controller
 function Controller(view, model) {
+    var _view = view;
+    var _model = model;
 
-    view.canvas.addEventListener('click', function (event) {
-        var gridx = Math.floor(event.offsetX / model.width);
-        var gridy = Math.floor(event.offsetY / model.height);
-        model.viewLiveCell(gridx, gridy);
+    _view.canvas.addEventListener('click', function (event) {
+        var _gridx = Math.floor(event.offsetX / _model.width);
+        var _gridy = Math.floor(event.offsetY / _model.height);
+        _model.viewLiveCell(_gridx, _gridy);
     });
 
     start_btn.addEventListener('click', function () {
-        model.startSimulation();
+        _model.startSimulation();
     });
 
     stop_btn.addEventListener('click', function () {
-        model.stopSimulation();
+        _model.stopSimulation();
     });
 
     accept.addEventListener('click', function () {
-        view.setWidth();
-        view.setHeight();
-        view.start();
+        _view.setWidth();
+        _view.setHeight();
+        _view.start();
     });
 
-    view.actors.push(model);
-    view.start();
+    _view.actors.push(_model);
+    _view.start();
 
     return this;
 };
@@ -385,7 +387,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var view = new _view2.default("game"); //entry
 
-var model = new _model2.default(0, 0, Math.floor(1366 / 20), Math.floor(1024 / 20), 30, 30);
+var model = new _model2.default(0, 0, Math.floor(1280 / 20), Math.floor(1024 / 20), 30, 30);
 (0, _controller2.default)(view, model);
 
 /***/ })

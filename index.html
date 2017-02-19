@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
     <title>Conway's Game of Life</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -9,12 +11,12 @@
     <canvas class="game" id="game" width="720" height="390"></canvas>
     <div class="buttons-container">
         <input type="button" value="Start" id="start_btn"/>
-        <input type="button" value="Pause" id="stop_btn"/><br>
-        <label>Width:</label>
+        <input type="button" value="Pause" id="stop_btn"/>
+        <label class="text">Width:</label>
         <input type="number" value="720" id="number_btn_width"/>
-        <label>Height:</label>
-        <input type="number" value="390" id="number_btn_height"/><br>
-        <input type="button" value="Accept width/height" id="accept">
+        <label class="text">Height:</label>
+        <input type="number" value="390" id="number_btn_height"/>
+        <input type="button" value="Accept width / height" id="accept">
     </div>
     <script type="text/javascript" src="public/bundle.js"></script>
 </body>
